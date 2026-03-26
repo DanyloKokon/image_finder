@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../style.css'
+//import '..styles/style.css'
 function SearchBar({ addText }) {
 
     const [text, setText] = useState('')
@@ -26,6 +26,7 @@ function SearchBar({ addText }) {
                     placeholder="Search images and photos"
                 />
             </form>
+            
         </header>
     </>);
 }

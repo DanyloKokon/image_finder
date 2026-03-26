@@ -1,12 +1,13 @@
 import { use, useEffect, useState } from 'react'
-import SearchBar from './components/SearchBar'
-import ImageGallery from './components/ImageGallery'
-import { PixabayApi } from './components/API'
-import Loader from './components/Loader'
-import Button from './components/Button'
-import Modal from './components/Modal'
-// import './App.css'
-import './style.css'
+import SearchBar from '../components/SearchBar'
+import ImageGallery from '../components/ImageGallery'
+import { PixabayApi } from '../components/API'
+import Loader from '../components/Loader'
+import Button from '../components/Button'
+import Modal from '../components/Modal'
+import Mode from '../components/Mode'
+
+import '../styles/style.css'
 
 function App() {
   const [text, setText] = useState('');
@@ -54,6 +55,7 @@ function App() {
       {showModal && <Modal showModal={onShowModal} modal={modal}/>}
       {text && <Button num={addNum}></Button>}
       {loading && <Loader loading={loading}/>}
+      
     </div>)
 }
 

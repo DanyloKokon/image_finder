@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../style.css'
+//import '..styles/style.css'
 import ImageGalleryItem from "./ImageGalleryItem";
 function ImageGallery({imgs, onShow, setModal}) {
 
