@@ -1,8 +1,12 @@
 import '../style.css'
-function ImageGalleryItem({hit}) {
+function ImageGalleryItem({ hit, onShow, setModal }) {
     const { id, webformatURL } = hit;
+
     return (<>
-        <li className="ImageGalleryItem" id= {id} >
+        <li onClick={() => {
+            onShow(true)
+            setModal(webformatURL)
+        }} className="ImageGalleryItem" id={id} >
             <img src={webformatURL} alt="" className='ImageGalleryItem-image' />
         </li>
     </>);
