@@ -1,4 +1,5 @@
-import { use, useEffect, useState } from 'react'
+// App.jsx
+import { createContext, useContext, useEffect, useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import ImageGallery from '../components/ImageGallery'
 import { PixabayApi } from '../components/API'
@@ -6,8 +7,10 @@ import Loader from '../components/Loader'
 import Button from '../components/Button'
 import Modal from '../components/Modal'
 import Mode from '../components/Mode'
-
+import ImageGalleryItem from '../components/ImageGalleryItem'
 import '../styles/style.css'
+
+export const SetModal = createContext()
 
 function App() {
   const [text, setText] = useState('');
@@ -18,19 +21,21 @@ function App() {
   const [modal, setModal] = useState('')
 
 
+
+
   useEffect(() => {
     if (text) {
       PixabayApi(text, num)
         .then((img) => {
           setImg(img)
-        }).finally(()=>{
+        }).finally(() => {
           setLoading(false)
         })
     }
   }, [text, num])
 
   const addNum = () => {
-    setNum(num+1)
+    setNum(num + 1)
   }
 
   const addText = (enter) => {
@@ -41,21 +46,26 @@ function App() {
     setShowModal(tru)
   }
 
-  const onModal = (link) =>{
+  const onModal = (link) => {
     setModal(link)
   }
 
-  
+
 
 
   return (
     <div className='App'>
-      <SearchBar addText={addText}></SearchBar>
-      <ImageGallery setModal={onModal} onShow={onShowModal} imgs={imgs}></ImageGallery>
-      {showModal && <Modal showModal={onShowModal} modal={modal}/>}
+      <SearchBar addText={addText} />
+
+     
+      <SetModal.Provider value={onModal}>
+        <ImageGallery onShow={onShowModal} imgs={imgs} />
+      </SetModal.Provider>
+
+      {showModal && <Modal showModal={onShowModal} modal={modal} />}
       {text && <Button num={addNum}></Button>}
-      {loading && <Loader loading={loading}/>}
-      
+      {loading && <Loader loading={loading} />}
+
     </div>)
 }
 
